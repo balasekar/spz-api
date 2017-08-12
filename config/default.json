@@ -1,0 +1,20 @@
+{
+  "name": "SPZ API",
+  "env": "default",
+  "client": "Sai Power Z",
+  "port": 3000,
+  "logLevel": "debug",
+  "url": "http://localhost:9002",
+  "logQueries": true,
+  "postgres": {
+    "host": "localhost",
+    "port": 5432,
+    "user": "spowerz",
+    "password": "4cb16d8a2b07271e428b4094cc33c9d7",
+    "db": "spowerz",
+    "poolSize": 15,
+    "ssl": false,
+    "poolIdleTimeout": 600000,
+    "applicationName": "SPZ-API"
+  }
+}
