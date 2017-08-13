@@ -7,6 +7,9 @@ const format = require('pg-promise/lib/formatting').as.format;
 // All the queries used by the application should be listed here
 const queries = {
     testPostgres: 'SELECT 1;',
+    insertItems: 'INSERT INTO test.items(text, complete) values($1::text, $2::boolean);',
+    getItems: 'SELECT * FROM test.items ORDER BY id ASC;',
+    updateItems: 'UPDATE test.items SET text=($1::text), complete=($2::boolean) WHERE id=($3);'
 };
 
 // loop through each query and turn it into a method that gets the database connection,

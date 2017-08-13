@@ -1,7 +1,7 @@
 {
   "name": "SPZ API",
   "env": "default",
-  "client": "Sai Power Z",
+  "client": "SPowerZ",
   "port": 3000,
   "logLevel": "debug",
   "url": "http://localhost:9002",
