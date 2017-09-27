@@ -2,32 +2,32 @@
   "products": [
     {
       "id": 1,
-      "image": "DC",
+      "image": "DC.jpg",
       "title": "DC Meter"
     },
     {
       "id": 2,
-      "image": "MFM",
+      "image": "MFM.jpg",
       "title": "Multi Meter"
     },
     {
       "id": 3,
-      "image": "DCEM",
+      "image": "DCEM.jpg",
       "title": "DCE Meter"
     },
     {
       "id": 4,
-      "image": "PM",
+      "image": "PM.jpg",
       "title": "Panel Meter"
     },
     {
       "id": 5,
-      "image": "UM",
+      "image": "UM.jpg",
       "title": "Multi Meter"
     },
     {
       "id": 6,
-      "image": "SM",
+      "image": "SM.jpg",
       "title": "Solar Meter"
     }
   ]

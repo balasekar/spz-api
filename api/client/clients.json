@@ -1,0 +1,19 @@
+{
+"clients": [
+    {
+      "id": 1,
+      "image": "BSNL.png",
+      "title": "BSNL"
+    },
+    {
+      "id": 2,
+      "image": "BSNL.png",
+      "title": "TATA"
+    },
+    {
+      "id": 3,
+      "image": "BSNL.png",
+      "title": "DLF"
+    }
+  ]
+}
