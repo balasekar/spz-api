@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -9,7 +8,7 @@ const api = require('./api');
 
 const app = express();
 
-app.use((req, res, next) => {
+/* app.use((req, res, next) => {
     // Websites allowed to connect
     res.setHeader('Access-Control-Allow-Origin', config.get('allowOriginUrl'));
 
@@ -28,13 +27,12 @@ app.use((req, res, next) => {
     } else {
         next();
     }
-});
+}); */
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', api);
 
@@ -70,8 +68,8 @@ function www() {
 
     // attempt to start the webserver
     try {
-        app.listen(config.get('port'));
-        console.info(`spz-api started on port ${config.get('port')}`);
+        app.listen(process.env.PORT || config.get('port'));
+        console.info(`spz-api started on port ${process.env.PORT} or ${config.get('port')}`);
     } catch (err) {
         console.log(err);
     }
