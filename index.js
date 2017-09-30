@@ -8,7 +8,7 @@ const api = require('./api');
 
 const app = express();
 
-/* app.use((req, res, next) => {
+app.use((req, res, next) => {
     // Websites allowed to connect
     res.setHeader('Access-Control-Allow-Origin', config.get('allowOriginUrl'));
 
@@ -27,7 +27,7 @@ const app = express();
     } else {
         next();
     }
-}); */
+});
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
