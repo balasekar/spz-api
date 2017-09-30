@@ -1,5 +1,10 @@
 const config = require('config');
 const pg = require('pg');
+const url = require('url');
+
+const params = url.parse(process.env.DATABASE_URL);
+const auth = params.auth.split(':');
+
 // ensure pg doesn't try to parse the dates (it gets it wrong when it's just a date).
 // We use moment.utc() to parse the timestamps, so just tell pg not to modify the dates
 pg.types.setTypeParser(1082, str => str);
@@ -11,11 +16,11 @@ module.exports = {
     connect: () =>
         Promise.resolve().then(() => {
             const dbConfig = {
-                host: config.get('postgres.host'),
-                port: config.get('postgres.port'),
-                database: config.get('postgres.db'),
-                user: config.get('postgres.user'),
-                password: config.get('postgres.password'),
+                host: params.hostname || config.get('postgres.host'),
+                port: params.port || config.get('postgres.port'),
+                database: params.pathname.split('/')[1] || config.get('postgres.db'),
+                user: auth[0] || config.get('postgres.user'),
+                password: auth[1] || config.get('postgres.password'),
                 poolSize: config.get('postgres.poolSize'),
                 poolIdleTimeout: config.get('postgres.poolIdleTimeout'),
                 ssl: config.get('postgres.ssl'),
