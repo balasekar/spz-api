@@ -3,6 +3,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const db = require('./db');
+const mongoDB = require('./mongoDB');
 const config = require('config');
 const api = require('./api');
 
@@ -64,6 +65,16 @@ function www() {
         })
         .catch((err) => {
             console.error('Unable to connect to Postgres', err);
+        });
+
+    // attempt to connect to the mongoDB
+    mongoDB
+        .connect()
+        .then(() => {
+            console.info('Connected to the mongoDB');
+        })
+        .catch((err) => {
+            console.error('Unable to connect to mongoDB', err);
         });
 
     // attempt to start the webserver
