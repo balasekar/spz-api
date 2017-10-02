@@ -8,14 +8,12 @@ module.exports = {
         // res.json(products);
         mongodb.MongoClient.connect(MONGODB_URI, (err, database) => {
             if (err) throw err;
-            database.collection('products').find({}).toArray((error, docs) => {
-                if (error) {
-                    console.log(error);
-                    res.error(error);
-                } else {
-                    res.json(docs);
-                }
-            }).then(() => res);
+            database.collection('products').find().toArray((err1, result) => {
+                if (err1) throw err1;
+
+                console.log(result);
+                res.json(result);
+            });
         });
     }
 };
