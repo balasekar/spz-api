@@ -1,9 +1,6 @@
 const mongodb = require('mongodb');
 
-const MONGODB_URI = 'mongodb://spowerz:spowerz3515@cluster0-shard-00-00-dxplb.mongodb.net:27017,' +
-    'cluster0-shard-00-01-dxplb.mongodb.net:27017,' +
-    'cluster0-shard-00-02-dxplb.mongodb.net:27017/test?' +
-    'ssl=true&replicaSet=Cluster0-shard-0&authSource=admin';
+const MONGODB_URI = process.env.MONGO_URI;
 
 
 let db = null;
