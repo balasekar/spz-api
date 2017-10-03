@@ -32,7 +32,7 @@ app.use((req, res, next) => {
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
 app.use('/api', api);
@@ -55,6 +55,8 @@ app.use((err, req, res) => {
     res.render('error');
 });
 
+const MongoClient = require('mongodb').MongoClient;
+
 // All ready to go.. lets connect to things and start the webserver
 function www() {
     // attempt to connect to the db
@@ -67,24 +69,22 @@ function www() {
             console.error('Unable to connect to Postgres', err);
         });
 
-    // attempt to connect to the mongoDB
-    mongoDB
-        .connect()
-        .then(() => {
-            console.info('Connected to the mongoDB');
-        })
-        .catch((err) => {
-            console.error('Unable to connect to mongoDB', err);
-        });
+    // Initialize mongo connection once
+    const MONGODB_URI = process.env.MONGO_URI;
+    MongoClient.connect(MONGODB_URI, (err, database) => {
+        if (err) throw err;
+        mongoDB.setDB(database);
+    });
 
     // attempt to start the webserver
     try {
         app.listen(process.env.PORT || config.get('port'));
-        console.info(`spz-api started on port ${process.env.PORT} or ${config.get('port')}`);
+        console.info(`spz-api started on port ${process.env.PORT} || ${config.get('port')}`);
     } catch (err) {
         console.log(err);
     }
 }
+
 www();
 
 module.exports = app;

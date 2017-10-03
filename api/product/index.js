@@ -1,19 +1,12 @@
-// const products = require('./products.json');
-const mongodb = require('mongodb');
-const MONGODB_URI = process.env.MONGO_URI;
+const mongodb = require('../../mongoDB');
 
 /** GET users listing. */
 module.exports = {
     getProducts(req, res) {
-        // res.json(products);
-        mongodb.MongoClient.connect(MONGODB_URI, (err, database) => {
+        mongodb.getDB().collection('products').find().toArray((err, result) => {
             if (err) throw err;
-            database.collection('products').find().toArray((err1, result) => {
-                if (err1) throw err1;
-
-                console.log(result);
-                res.json(result);
-            });
+            console.log(result);
+            res.json(result);
         });
     }
 };
