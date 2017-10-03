@@ -1,9 +1,10 @@
-const solutions = require('./solutions.json');
+const mongodb = require('../../mongoDB');
 
-/** GET users listing. */
 module.exports = {
     getSolutions(req, res) {
-        res.json(solutions);
-        return res;
+        mongodb.getDB().collection('solutions').find().toArray((err, result) => {
+            if (err) throw err;
+            res.json(result);
+        });
     }
 };
