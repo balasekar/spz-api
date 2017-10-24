@@ -8,11 +8,6 @@
   "url": "http://localhost:3001",
   "logQueries": true,
   "postgres": {
-    "host": "localhost",
-    "port": 5432,
-    "user": "spowerz",
-    "password": "spowerz",
-    "db": "spowerz",
     "poolSize": 15,
     "ssl": false,
     "poolIdleTimeout": 600000,

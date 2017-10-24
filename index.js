@@ -32,7 +32,7 @@ app.use((req, res, next) => {
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/api', api);
@@ -70,8 +70,7 @@ function www() {
         });
 
     // Initialize mongo connection once
-    const MONGODB_URI = process.env.MONGO_URI;
-    MongoClient.connect(MONGODB_URI, (err, database) => {
+    MongoClient.connect(process.env.MONGO_URI, (err, database) => {
         if (err) throw err;
         mongoDB.setDB(database);
     });

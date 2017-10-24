@@ -16,11 +16,11 @@ module.exports = {
     connect: () =>
         Promise.resolve().then(() => {
             const dbConfig = {
-                host: params.hostname || config.get('postgres.host'),
-                port: params.port || config.get('postgres.port'),
-                database: params.pathname.split('/')[1] || config.get('postgres.db'),
-                user: auth[0] || config.get('postgres.user'),
-                password: auth[1] || config.get('postgres.password'),
+                host: params.hostname,
+                port: params.port,
+                database: params.pathname.split('/')[1],
+                user: auth[0],
+                password: auth[1],
                 poolSize: config.get('postgres.poolSize'),
                 poolIdleTimeout: config.get('postgres.poolIdleTimeout'),
                 ssl: config.get('postgres.ssl'),
